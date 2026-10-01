@@ -17,14 +17,14 @@
 
 </div>
 
-## 目录
+## 📚 目录
 
 - [💡 这是什么](#-这是什么)
 - [✨ 功能](#-功能)
 - [🚀 安装](#-安装)
 - [📖 使用](#-使用)
-- [⚙️ 配置](#️-配置)
-- [🛠️ 开发](#️-开发)
+- [⚙️ 配置](#-配置)
+- [🛠️ 开发](#-开发)
 - [📁 项目结构](#-项目结构)
 - [🤝 贡献](#-贡献)
 - [📄 License](#-license)
@@ -52,17 +52,25 @@ readme-builder 是一个 AI Agent 技能：当用户要求生成、重写或美�
 
 ## 🚀 安装
 
-本项目是一个 Agent Skill，**无需安装任何代码依赖**。将仓库内容放入宿主 Agent 的技能目录即可：
+### 下载即用
 
-- **本地技能目录**：把 `SKILL.md`（及可选资产）复制到 Agent 的技能根目录，例如豆包的 `.user_skills/` 或 Claude Code 的 `.claude/skills/`。
-- **远程技能源**：将本仓库地址配置为 Agent 可读取的技能来源。
+将本仓库的 `skills/readme-builder` 目录复制到宿主 Agent 的技能根目录，例如豆包的 `.user_skills/` 或 Claude Code 的 `.claude/skills/`。
+
+### 从源码安装
+
+```bash
+git clone https://github.com/lsx-xyg/readme-builder.git
+```
+
+克隆后把 `skills/readme-builder` 放到 Agent 的技能根目录。
 
 > [!NOTE]
 > 具体安装路径与生效方式取决于宿主 Agent 平台，请以其技能安装文档为准。
 
 ## 📖 使用
 
-对 Agent 说出触发词（**生成 README / 写 README / README.md / 项目说明文档 / 项目主页**），并简单描述项目，例如：
+1. 对 Agent 说出触发词：**生成 README / 写 README / README.md / 项目说明文档 / 项目主页**。
+2. 简单描述项目，例如：
 
 ```text
 生成 README.md：项目名 foo-cli，Python 3.10+，MIT，PyPI 发布，跨平台。
@@ -70,7 +78,7 @@ readme-builder 是一个 AI Agent 技能：当用户要求生成、重写或美�
 安装：pip install foo-cli；使用：foo-cli rename <dir>。
 ```
 
-Agent 会先按「项目信息表单」补齐缺失信息（一次最多追问 3 个问题），再按规范输出完整 README。
+3. Agent 先按「项目信息表单」补齐缺失信息（一次最多追问 3 个问题），再按规范输出完整 README。
 
 <!-- 替换为实际使用截图：docs/screenshot-main.png -->
 
@@ -101,18 +109,21 @@ Agent 会先按「项目信息表单」补齐缺失信息（一次最多追问 3
 
 本项目为纯 Markdown 规范型技能：
 
-- **无构建、无依赖、无 CI**：核心只有 `SKILL.md` 一个文件。
-- **修改方式**：直接编辑 `SKILL.md` 中的章节规范、Logo 规则或检查清单。
-- **验证方式**：按「输出前检查清单」逐条自查，或用示例 prompt 完整试跑一次。
+- **前置要求**：无代码依赖，无需构建环境。
+- **运行**：作为 Agent 技能触发，无独立运行入口。
+- **打包 / CI**：无构建产物，未配置 CI。
 
 ## 📁 项目结构
 
 ```text
 readme-builder/
-├── SKILL.md          # 技能定义：信息表单、章节规范、Logo 规则、检查清单
-├── LICENSE           # MIT
-└── docs/
-    └── logo.svg      # 占位 Logo（可替换为 docs/logo.png）
+├── README.md                        # 项目说明（本文件）
+├── LICENSE                          # MIT License
+├── docs/
+│   └── logo.svg                     # 占位 Logo（可替换为 docs/logo.png）
+└── skills/
+    └── readme-builder/
+        └── SKILL.md                 # 技能定义：信息表单、章节规范、Logo 规则、检查清单
 ```
 
 ## 🤝 贡献
@@ -122,7 +133,3 @@ readme-builder/
 ## 📄 License
 
 本项目采用 [MIT License](LICENSE)。
-
----
-
-**Logo 处理报告**：项目里没找到 Logo，已生成占位 SVG：`docs/logo.svg`
